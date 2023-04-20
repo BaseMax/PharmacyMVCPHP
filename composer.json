@@ -11,5 +11,7 @@
       "email": "aliahmadi.github@gmail.com"
     }
   ],
-  "require": {}
+  "require": {
+    "doctrine/migrations": "^3.6"
+  }
 }
