@@ -1,0 +1,15 @@
+{
+    "name": "max/pharmacy-mvcphp",
+    "autoload": {
+        "psr-4": {
+            "Max\\PharmacyMvcphp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "aliiahmadi",
+            "email": "aliahmadi.github@gmail.com"
+        }
+    ],
+    "require": {}
+}
