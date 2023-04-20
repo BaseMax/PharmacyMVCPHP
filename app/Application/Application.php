@@ -2,6 +2,8 @@
 
 namespace App\Application;
 
+use App\Application\Request\Request;
+
 class Application
 {
     protected Router $router;
@@ -31,7 +33,13 @@ class Application
         $this->router->delete($path, $callback);
     }
 
+    public function fallback(callable $callback)
+    {
+        $this->router->fallback($callback);
+    }
+
     public function run()
     {
+        $method = Request::method();
     }
 }

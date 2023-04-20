@@ -12,6 +12,7 @@
     }
   ],
   "require": {
-    "doctrine/migrations": "^3.6"
+    "doctrine/migrations": "^3.6",
+    "robmorgan/phinx": "^0.13.4"
   }
 }
