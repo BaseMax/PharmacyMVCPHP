@@ -42,4 +42,11 @@ class Request
         }
         return $data;
     }
+
+    public static function PUT(): array
+    {
+        $input_data = file_get_contents('php://input');
+        parse_str($input_data, $put_vars);
+        return $put_vars;
+    }
 }

@@ -46,6 +46,13 @@ class Database
 
     public function Update(string $table, int $id, array $columns, array $values)
     {
+        $sql = $this->setTable(self::$UpdateQuery, $table);
+        $sql = $this->setId($sql, $id);
+        $sql = $this->setParams($sql, array_combine($columns, $values));
+
+        var_dump($sql);
+        exit;
+
         return $this->get($table, $id);
     }
 
@@ -85,5 +92,20 @@ class Database
         $implode = "'" . implode("', '", $values) . "'";
         $sql = str_replace("{values}", $implode, $sql);
         return $sql;
+    }
+
+    protected function setParams(string $sql, array $data): string
+    {
+        $update_values = '';
+
+        foreach ($data as $key => $value) {
+            $update_values .= "$key='$value', ";
+        }
+        $update_values = rtrim($update_values, ', ');
+
+        var_dump($data);
+        exit;
+
+        return str_replace("{sets}", $update_values, $sql);
     }
 }

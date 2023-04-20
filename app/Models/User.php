@@ -29,4 +29,10 @@ class User extends Model
         $database = new Database();
         return $database->Delete(self::$tableName, $id);
     }
+
+    public static function update(int $id, array $columns, array $values)
+    {
+        $database = new Database();
+        return $database->Update(self::$tableName, $id, $columns, $values);
+    }
 }

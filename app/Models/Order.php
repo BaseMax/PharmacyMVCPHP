@@ -29,4 +29,10 @@ class Order extends Model
         $database = new Database();
         return $database->Insert(self::$tableName, $columns, $values);
     }
+
+    public static function update(int $id, array $columns, array $values)
+    {
+        $database = new Database();
+        return $database->Update(self::$tableName, $id, $columns, $values);
+    }
 }

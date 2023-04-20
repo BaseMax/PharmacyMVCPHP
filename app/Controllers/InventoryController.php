@@ -27,6 +27,12 @@ class InventoryController extends Controller
 
     public function update(int $id)
     {
+        // $data = Request::POST();
+
+        // return Response::json(User::update($id, array_keys($data), array_values($data)));
+
+        print_r(Request::PUT());
+        exit;
     }
 
     public function destroy(int $id)
