@@ -4,6 +4,14 @@ namespace App\Application;
 
 class Router
 {
+
+    protected array $routes = [
+        "get",
+        "post",
+        "delete",
+        "put"
+    ];
+
     public function __construct()
     {
     }

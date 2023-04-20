@@ -30,4 +30,8 @@ class Application
     {
         $this->router->delete($path, $callback);
     }
+
+    public function run()
+    {
+    }
 }
