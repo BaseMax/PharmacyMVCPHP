@@ -12,19 +12,21 @@ class User extends Model
     {
     }
 
-    public static function create()
+    public static function create(array $columns, array $values): array
     {
+        $database = new Database();
+        return $database->Insert(self::$tableName, $columns, $values);
     }
 
     public static function get(int|null $id = null)
     {
         $database = new Database();
-        return $database->get(self::$tableName, $id);
+        return $database->Get(self::$tableName, $id);
     }
 
     public static function delete(int $id): bool
     {
         $database = new Database();
-        return $database->delete(self::$tableName, $id);
+        return $database->Delete(self::$tableName, $id);
     }
 }

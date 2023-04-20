@@ -32,9 +32,16 @@ class Database
         return false;
     }
 
-    public function Insert(string $table, array $columns, array $values): bool
+    public function Insert(string $table, array $columns, array $values)
     {
-        return true;
+        $sql = $this->setTable(self::$InsertQuery, $table);
+        $sql = $this->setColumns($sql, $columns);
+        $sql = $this->setValues($sql, $values);
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+
+        return $this->get($table, $this->db->lastInsertId());
     }
 
     public function Update(string $table, int $id, array $columns, array $values)
@@ -42,7 +49,7 @@ class Database
         return $this->get($table, $id);
     }
 
-    public function get(string $table, int|null $id = null)
+    public function Get(string $table, int|null $id = null)
     {
         $where = "";
 
@@ -64,5 +71,19 @@ class Database
     protected function setId(string $sql, int $id): string
     {
         return str_replace("{id}", $id, $sql);
+    }
+
+    protected function setColumns(string $sql, array $columns): string
+    {
+        $implode = '`' . implode('`, `', $columns) . '`';
+        $sql = str_replace("{columns}", $implode, $sql);
+        return  $sql;
+    }
+
+    protected function setValues(string $sql, array $values): string
+    {
+        $implode = "'" . implode("', '", $values) . "'";
+        $sql = str_replace("{values}", $implode, $sql);
+        return $sql;
     }
 }
