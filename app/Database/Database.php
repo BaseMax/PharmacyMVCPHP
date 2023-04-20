@@ -23,7 +23,13 @@ class Database
 
     public function Delete(string $table, int $id): bool
     {
-        return true;
+        $sql = $this->setTable(self::$DeleteQuery, $table);
+        $sql = $this->setId($sql, $id);
+
+        $stmt = $this->db->prepare($sql);
+        if ($stmt->execute()) return true;
+
+        return false;
     }
 
     public function Insert(string $table, array $columns, array $values): bool
@@ -31,9 +37,9 @@ class Database
         return true;
     }
 
-    public function Update(string $table, array $columns, array $values): bool
+    public function Update(string $table, int $id, array $columns, array $values)
     {
-        return true;
+        return $this->get($table, $id);
     }
 
     public function get(string $table, int|null $id = null)

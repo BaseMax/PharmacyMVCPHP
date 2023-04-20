@@ -32,5 +32,8 @@ class InventoryController extends Controller
 
     public function destroy(int $id)
     {
+        if (User::delete($id)) return Response::json(["detail" => "user deleted successfuly"]);
+
+        return Response::json(["detail" => "Unsuccessful"]);
     }
 }

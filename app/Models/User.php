@@ -21,4 +21,10 @@ class User extends Model
         $database = new Database();
         return $database->get(self::$tableName, $id);
     }
+
+    public static function delete(int $id): bool
+    {
+        $database = new Database();
+        return $database->delete(self::$tableName, $id);
+    }
 }
