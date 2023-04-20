@@ -13,6 +13,7 @@
   ],
   "require": {
     "doctrine/migrations": "^3.6",
-    "robmorgan/phinx": "^0.13.4"
+    "robmorgan/phinx": "^0.13.4",
+    "vlucas/phpdotenv": "^5.5"
   }
 }
