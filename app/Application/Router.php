@@ -2,10 +2,13 @@
 
 namespace App\Application;
 
+use App\Application\Facades\Params;
+use App\Application\Request\Request;
+
 class Router
 {
 
-    protected array $routes = [
+    public array $routes = [
         "get" => [],
         "post" => [],
         "delete" => [],
@@ -19,26 +22,46 @@ class Router
 
     public function get(string $path, array $callback)
     {
+        $path = Params::escape($path);
         $this->routes["get"][$path] = $callback;
     }
 
     public function post(string $path, array $callback)
     {
+        $path = Params::escape($path);
         $this->routes["post"][$path] = $callback;
     }
 
     public function put(string $path, array $callback)
     {
+        $path = Params::escape($path);
         $this->routes["put"][$path] = $callback;
     }
 
     public function delete(string $path, array $callback)
     {
+        $path = Params::escape($path);
         $this->routes["delete"][$path] = $callback;
     }
 
     public function fallback(callable $callback)
     {
         $this->routes["fallback"] = $callback;
+    }
+
+    public function execute()
+    {
+        $method = Request::method();
+        $path = Request::path();
+
+        foreach (array_keys($this->routes[$method]) as $route) {
+            $param = Params::match($path, $route) ?? [];
+
+            if ($param) {
+                return call_user_func($this->routes[$method][$route]);
+            }
+
+            return call_user_func($this->routes["fallback"]);
+        }
     }
 }

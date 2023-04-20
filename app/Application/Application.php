@@ -40,6 +40,6 @@ class Application
 
     public function run()
     {
-        $method = Request::method();
+        return $this->router->execute();
     }
 }

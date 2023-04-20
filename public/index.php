@@ -3,13 +3,15 @@
 include_once __DIR__ . "/../vendor/autoload.php";
 
 use App\Application\Application;
+use App\Application\Facades\Params;
+use App\Controllers\MainController;
 
 $app = new Application();
 
 
 // Inventory Endpoints
 
-$app->get("/api/inventory", []);
+$app->get("/api/inventory", [MainController::class, "index"]);
 
 $app->get("/api/inventory/{id}", []);
 
@@ -47,6 +49,7 @@ $app->post("/api/auth/register", []);
 
 
 $app->fallback(function () {
+    return "Not Found";
 });
 
-$app->run();
+echo $app->run();
