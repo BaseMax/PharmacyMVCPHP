@@ -58,10 +58,11 @@ class Router
             $param = Params::match($path, $route) ?? [];
 
             if ($param) {
-                return call_user_func($this->routes[$method][$route]);
+                $instance = new $this->routes[$method][$route][0];
+                $methodForCall = $this->routes[$method][$route][1];
+                return call_user_func([$instance, $methodForCall], $param);
             }
-
-            return call_user_func($this->routes["fallback"]);
         }
+        return call_user_func($this->routes["fallback"]);
     }
 }

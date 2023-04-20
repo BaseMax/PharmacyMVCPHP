@@ -26,12 +26,12 @@ class Params
         return $newPath;
     }
 
-    public static function match(string $path, string $route): bool|int
+    public static function match(string $path, string $route)
     {
         preg_match('/^' . $route . '$/', $path, $matches);
 
         if ($matches[1]) return $matches[1];
 
-        return false;
+        return $matches[0];
     }
 }
