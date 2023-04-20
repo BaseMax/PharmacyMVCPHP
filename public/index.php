@@ -2,6 +2,10 @@
 
 include_once __DIR__ . "/../vendor/autoload.php";
 
+
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
 use App\Application\Application;
 use App\Application\Response\Response;
 use App\Controllers\AuthenticationController;
