@@ -3,6 +3,7 @@
 include_once __DIR__ . "/../vendor/autoload.php";
 
 use App\Application\Application;
+use App\Application\Response\Response;
 use App\Controllers\AuthenticationController;
 use App\Controllers\InventoryController;
 use App\Controllers\OrdersController;
@@ -50,7 +51,9 @@ $app->post("/api/auth/register", [AuthenticationController::class, "register"]);
 
 
 $app->fallback(function () {
-    return "Not Found";
+    return Response::json([
+        "detail" => "Not found."
+    ]);
 });
 
 echo $app->run();

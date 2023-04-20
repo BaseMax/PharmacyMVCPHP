@@ -4,6 +4,7 @@ namespace App\Application;
 
 use App\Application\Facades\Params;
 use App\Application\Request\Request;
+use App\Application\Response\Response;
 
 class Router
 {
@@ -63,6 +64,7 @@ class Router
                 return call_user_func([$instance, $methodForCall], $param);
             }
         }
+        Response::statusCode(404);
         return call_user_func($this->routes["fallback"]);
     }
 }

@@ -22,4 +22,24 @@ class Request
 
         return substr($path, 0, $position);
     }
+
+    public static function GET(): array
+    {
+        $data = [];
+
+        foreach ($_GET as $key => $value) {
+            $data[$key] = $value;
+        }
+        return $data;
+    }
+
+    public static function POST(): array
+    {
+        $data = [];
+
+        foreach ($_POST as $key => $value) {
+            $data[$key] = $value;
+        }
+        return $data;
+    }
 }

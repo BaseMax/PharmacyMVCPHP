@@ -8,9 +8,4 @@ class MainController extends Controller
     {
         return "hello this is index " . $id;
     }
-
-    public function index2()
-    {
-        return "hello this is index 2";
-    }
 }
