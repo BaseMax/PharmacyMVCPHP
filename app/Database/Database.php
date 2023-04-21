@@ -9,11 +9,11 @@ class Database
 {
     protected PDO $db;
 
-    protected static string $DeleteQuery = "DELETE FROM {table} WHERE id = {id}";
-    protected static string $InsertQuery = "INSERT INTO {table} ({columns}) VALUES ({values})";
-    protected static string $UpdateQuery = "UPDATE {table} SET {sets} WHERE id = {id}";
-    protected static string $GetQuery = "SELECT * FROM {table}";
-    protected static string $CehckQuery = "SELECT * FROM {table} WHERE email={email} AND password={password}";
+    protected static string $DeleteQuery = "DELETE FROM {table} WHERE `id` = {id};";
+    protected static string $InsertQuery = "INSERT INTO {table} ({columns}) VALUES ({values});";
+    protected static string $UpdateQuery = "UPDATE {table} SET {sets} WHERE `id` = {id};";
+    protected static string $GetQuery = "SELECT * FROM {table};";
+    protected static string $CehckQuery = "SELECT * FROM {table} WHERE `email` = {email} AND `password` = {password};";
 
     public function __construct()
     {
@@ -28,6 +28,7 @@ class Database
         $sql = $this->setId($sql, $id);
 
         $stmt = $this->db->prepare($sql);
+
         if ($stmt->execute()) return true;
         else return false;
     }
@@ -58,9 +59,8 @@ class Database
 
     public function Get(string $table, int|null $id = null)
     {
-        $where = "";
-
-        if ($id) $where .= " WHERE id = $id";
+        if ($id !== null) $where = " WHERE `id` = $id";
+        else $where = "";
 
         $sql = $this->setTable(self::$GetQuery, $table) . $where;
         $stmt = $this->db->prepare($sql);
@@ -70,21 +70,17 @@ class Database
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
     public function Check(string $email, string $password, string $table): bool
     {
         $sql = $this->setTable(self::$CehckQuery, $table);
         $sql = $this->setEmail($sql, $email);
         $sql = $this->setPassword($sql, $password);
 
-        // var_dump($sql);
-        // exit;
-
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
 
         if (count($stmt->fetchAll(PDO::FETCH_ASSOC)) !== 0) return true;
-        return false;
+        else return false;
     }
 
     protected function setTable(string $sql, string $table): string
@@ -117,6 +113,7 @@ class Database
 
         foreach ($data as $key => $value)
             $update_values .= "$key='$value', ";
+
         $update_values = rtrim($update_values, ', ');
 
         return str_replace("{sets}", $update_values, $sql);
