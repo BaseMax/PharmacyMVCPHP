@@ -1,4 +1,5 @@
 <?php
+if (!defined("LOADED")) exit;
 
 use App\Controllers\AuthenticationController;
 use App\Controllers\InventoryController;
