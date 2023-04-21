@@ -15,8 +15,8 @@ class Drug extends Model
     public static function get(int|null $id = null)
     {
         $database = new Database();
-        
-        return $database->get(self::$tableName, $id);
+
+        return $database->Get(self::$tableName, $id);
     }
 
     public static function create(array $columns, array $values): array

@@ -16,7 +16,7 @@ class Order extends Model
     {
         $database = new Database();
 
-        return $database->get(self::$tableName, $id);
+        return $database->Get(self::$tableName, $id);
     }
 
     public static function delete(int $id): bool
