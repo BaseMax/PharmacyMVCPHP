@@ -14,7 +14,6 @@ use App\Controllers\OrdersController;
 
 $app = new Application();
 
-
 // Inventory Endpoints
 
 $app->get("/api/inventory", [InventoryController::class, "index"]);
@@ -26,9 +25,6 @@ $app->post("/api/inventory", [InventoryController::class, "store"]);
 $app->put("/api/inventory/{id}", [InventoryController::class, "update"]);
 
 $app->delete("/api/inventory/{id}", [InventoryController::class, "destroy"]);
-
-
-
 
 // Orders Endpoints
 
@@ -42,17 +38,11 @@ $app->put("/api/orders/{id}", [OrdersController::class, "update"]);
 
 $app->delete("/api/orders/{id}", [OrdersController::class, "destroy"]);
 
-
-
-
 // Authentication Endpoints
 
 $app->post("/api/auth/login", [AuthenticationController::class, "login"]);
 
 $app->post("/api/auth/register", [AuthenticationController::class, "register"]);
-
-
-
 
 $app->fallback(function () {
     return Response::json([

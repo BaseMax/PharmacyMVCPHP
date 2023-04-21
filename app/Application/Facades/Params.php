@@ -13,17 +13,14 @@ class Params
         preg_match('/^' . $newPath . '$/', $uri, $matches);
 
         if ($matches[1]) return $matches[1];
-
-        return false;
+        else return false;
     }
 
     public static function escape(string $path): string
     {
         $escapedPath = preg_quote($path, '/');
 
-        $newPath = str_replace("\{id\}", "([^\/]+)", $escapedPath);
-
-        return $newPath;
+        return str_replace("\{id\}", "([^\/]+)", $escapedPath);
     }
 
     public static function match(string $path, string $route)
@@ -31,7 +28,6 @@ class Params
         preg_match('/^' . $route . '$/', $path, $matches);
 
         if ($matches[1]) return $matches[1];
-
-        return $matches[0];
+        else return $matches[0];
     }
 }

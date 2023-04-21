@@ -28,8 +28,7 @@ class Database
 
         $stmt = $this->db->prepare($sql);
         if ($stmt->execute()) return true;
-
-        return false;
+        else return false;
     }
 
     public function Insert(string $table, array $columns, array $values)
@@ -50,8 +49,8 @@ class Database
         $sql = $this->setId($sql, $id);
         $sql = $this->setParams($sql, array_combine($columns, $values));
 
-        var_dump($sql);
-        exit;
+        // var_dump($sql);
+        // exit;
 
         return $this->get($table, $id);
     }
@@ -83,28 +82,27 @@ class Database
     protected function setColumns(string $sql, array $columns): string
     {
         $implode = '`' . implode('`, `', $columns) . '`';
-        $sql = str_replace("{columns}", $implode, $sql);
-        return  $sql;
+
+        return str_replace("{columns}", $implode, $sql);
     }
 
     protected function setValues(string $sql, array $values): string
     {
         $implode = "'" . implode("', '", $values) . "'";
-        $sql = str_replace("{values}", $implode, $sql);
-        return $sql;
+
+        return str_replace("{values}", $implode, $sql);
     }
 
     protected function setParams(string $sql, array $data): string
     {
         $update_values = '';
 
-        foreach ($data as $key => $value) {
+        foreach ($data as $key => $value)
             $update_values .= "$key='$value', ";
-        }
         $update_values = rtrim($update_values, ', ');
 
-        var_dump($data);
-        exit;
+        // var_dump($data);
+        // exit;
 
         return str_replace("{sets}", $update_values, $sql);
     }
