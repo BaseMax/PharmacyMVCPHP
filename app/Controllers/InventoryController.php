@@ -31,7 +31,10 @@ class InventoryController extends Controller
 
         // return Response::json(User::update($id, array_keys($data), array_values($data)));
 
-        print_r(Request::PUT());
+        // print_r(Request::PUT());
+        // exit;
+
+        var_dump(Request::PUT());
         exit;
     }
 

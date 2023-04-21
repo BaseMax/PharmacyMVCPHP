@@ -27,9 +27,9 @@ class Request
     {
         $data = [];
 
-        foreach ($_GET as $key => $value)
+        foreach ($_GET as $key => $value) {
             $data[$key] = $value;
-
+        }
         return $data;
     }
 
@@ -37,17 +37,15 @@ class Request
     {
         $data = [];
 
-        foreach ($_POST as $key => $value)
+        foreach ($_POST as $key => $value) {
             $data[$key] = $value;
-
+        }
         return $data;
     }
 
     public static function PUT(): array
     {
-        $input_data = file_get_contents('php://input');
-        parse_str($input_data, $put_vars);
-
-        return $put_vars;
+        parse_str(file_get_contents('php://input'), $_PUT);
+        return $_PUT;
     }
 }
