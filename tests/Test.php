@@ -4,13 +4,10 @@ use PHPUnit\Framework\TestCase;
 
 class Test extends TestCase
 {
-
     private static $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiYWxpIiwiZmFtaWx5IjoiYWhtYWRpIiwiZXhwIjoxOTk3NDIxNjc1fQ.1m7nzPusjSQqOZ4Ret645R_wdD89nhHcncUk5HgzxeU";
-
 
     public function test_get_successfuly()
     {
-
         $client = new GuzzleHttp\Client([
             'base_uri' => 'http://localhost:5000/api',
             'headers' => [
