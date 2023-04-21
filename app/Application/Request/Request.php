@@ -48,4 +48,11 @@ class Request
         parse_str(file_get_contents('php://input'), $_PUT);
         return $_PUT;
     }
+
+    public static function Token(): string|bool
+    {
+        if (!isset($_SERVER['HTTP_AUTHORIZATION'])) return false;
+
+        return substr($_SERVER['HTTP_AUTHORIZATION'], 7);
+    }
 }

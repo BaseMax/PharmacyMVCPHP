@@ -13,16 +13,7 @@ class AuthenticationController extends Controller
     {
         $data = Request::POST();
 
-        if (User::check($data["email"], $data["password"])) {
-            return Response::json([
-                "token" => JWT::jwt($data)
-            ]);
-        }
-
-        Response::statusCode(401);
-        return Response::json([
-            "detail" => "Unauthorized"
-        ]);
+        $this->check($data);
     }
 
     public function register()
