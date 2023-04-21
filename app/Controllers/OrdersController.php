@@ -34,8 +34,8 @@ class OrdersController extends Controller
 
     public function destroy(int $id)
     {
-        if (Order::delete($id)) return Response::json(["detail" => "user deleted successfuly"]);
+        if (Order::delete($id)) return Response::json(["detail" => "order deleted successfuly"]);
         Response::statusCode(404);
-        return Response::json(["detail" => "user not found."]);
+        return Response::json(["detail" => "order not found."]);
     }
 }
