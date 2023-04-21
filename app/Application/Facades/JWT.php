@@ -29,7 +29,7 @@ class JWT extends Facade
         return $jwt;
     }
 
-    public static function decode(string $jwt): array
+    public static function decode(string $jwt)
     {
         try {
             $decoded = JsonWebToken::decode($jwt, new Key(self::secret(), 'HS256'));

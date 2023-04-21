@@ -31,7 +31,7 @@ class Controller
     {
         $data = JWT::decode($token);
 
-        if (User::check($data["email"], $data["password"])) return true;
+        if (User::check($data->email, $data->password)) return true;
         return false;
     }
 }
