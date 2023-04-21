@@ -18,13 +18,12 @@ class Controller
 
     protected function check(array $data)
     {
-        if (User::check($data["email"], $data["password"])) {
+        if (User::check($data["email"], $data["password"]))
             return Response::json([
                 "token" => JWT::jwt($data)
             ]);
-        }
-
-        return $this->unauthorized();
+        else
+            return $this->unauthorized();
     }
 
     protected function checkToken(string $token): bool
@@ -32,6 +31,6 @@ class Controller
         $data = JWT::decode($token);
 
         if (User::check($data->email, $data->password)) return true;
-        return false;
+        else return false;
     }
 }

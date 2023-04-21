@@ -4,9 +4,10 @@ namespace App\Application\Response;
 
 class Response
 {
-    public static function json(array $data)
+    public static function json(array $data): string
     {
         header('Content-Type: application/json');
+
         return json_encode($data);
     }
 

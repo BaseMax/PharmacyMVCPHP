@@ -16,10 +16,15 @@ class AuthenticationController extends Controller
         $this->check($data);
     }
 
-    public function register()
+    public function register(): string
     {
         $data = Request::POST();
 
-        return Response::json(User::create(array_keys($data), array_values($data)));
+        return Response::json(
+            User::create(
+                array_keys($data),
+                array_values($data)
+            )
+        );
     }
 }

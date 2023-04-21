@@ -4,5 +4,5 @@ namespace App\Application\Facades;
 
 class Logger extends Facade
 {
-    // public static function 
+    // Public static function 
 }

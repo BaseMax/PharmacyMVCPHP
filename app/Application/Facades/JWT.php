@@ -3,8 +3,8 @@
 namespace App\Application\Facades;
 
 use Exception;
-use Firebase\JWT\JWT as JsonWebToken;
 use Firebase\JWT\Key;
+use Firebase\JWT\JWT as JsonWebToken;
 
 class JWT extends Facade
 {
