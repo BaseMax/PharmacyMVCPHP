@@ -11,7 +11,7 @@ class Database
 
     protected static string $DeleteQuery = "DELETE FROM {table} WHERE id = {id}";
     protected static string $InsertQuery = "INSERT INTO {table} ({columns}) VALUES ({values})";
-    protected static string $UpdateQuery = "UPDATE {table} {sets} WHERE id = {id}";
+    protected static string $UpdateQuery = "UPDATE {table} SET {sets} WHERE id = {id}";
     protected static string $GetQuery = "SELECT * FROM {table}";
 
     public function __construct()
@@ -49,8 +49,8 @@ class Database
         $sql = $this->setId($sql, $id);
         $sql = $this->setParams($sql, array_combine($columns, $values));
 
-        // var_dump($sql);
-        // exit;
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
 
         return $this->get($table, $id);
     }
@@ -100,9 +100,6 @@ class Database
         foreach ($data as $key => $value)
             $update_values .= "$key='$value', ";
         $update_values = rtrim($update_values, ', ');
-
-        // var_dump($data);
-        // exit;
 
         return str_replace("{sets}", $update_values, $sql);
     }
