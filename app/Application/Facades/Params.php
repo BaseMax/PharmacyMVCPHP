@@ -12,7 +12,8 @@ class Params
 
         preg_match('/^' . $newPath . '$/', $uri, $matches);
 
-        if ($matches[1]) return $matches[1];
+        if (count($matches) === 0) return false;
+        else if ($matches[1]) return $matches[1];
         else return false;
     }
 
@@ -23,11 +24,12 @@ class Params
         return str_replace("\{id\}", "([^\/]+)", $escapedPath);
     }
 
-    public static function match(string $path, string $route)
+    public static function match(string $path, string $route): ?string
     {
         preg_match('/^' . $route . '$/', $path, $matches);
 
-        if ($matches[1]) return $matches[1];
+        if (count($matches) === 0) return null;
+        else if ($matches[1]) return $matches[1];
         else return $matches[0];
     }
 }

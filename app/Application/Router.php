@@ -64,7 +64,9 @@ class Router
                 return call_user_func([$instance, $methodForCall], $param);
             }
         }
+
         Response::statusCode(404);
+
         return call_user_func($this->routes["fallback"]);
     }
 }
