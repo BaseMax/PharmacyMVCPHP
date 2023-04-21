@@ -39,4 +39,11 @@ class User extends Model
 
         return $database->Update(self::$tableName, $id, $columns, $values);
     }
+
+    public static function check(string $email, string $password): bool
+    {
+        $database = new Database();
+
+        return $database->Check($email, $password, self::$tableName);
+    }
 }

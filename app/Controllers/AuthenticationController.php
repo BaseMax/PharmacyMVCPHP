@@ -11,11 +11,18 @@ class AuthenticationController extends Controller
 {
     public function login()
     {
-        // var_dump("Ok");
-        var_dump(JWT::jwt([
-            "name" => "ali",
-            "family" => "ahmadi"
-        ]));
+        $data = Request::POST();
+
+        if (User::check($data["email"], $data["password"])) {
+            return Response::json([
+                "token" => JWT::jwt($data)
+            ]);
+        }
+
+        Response::statusCode(401);
+        return Response::json([
+            "detail" => "Unauthorized"
+        ]);
     }
 
     public function register()

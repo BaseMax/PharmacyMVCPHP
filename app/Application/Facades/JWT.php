@@ -4,6 +4,7 @@ namespace App\Application\Facades;
 
 use Exception;
 use Firebase\JWT\JWT as JsonWebToken;
+use Firebase\JWT\Key;
 
 class JWT extends Facade
 {
@@ -22,7 +23,7 @@ class JWT extends Facade
                 "exp" => $exp_time
             ]),
             $key,
-            'HS256'
+            "HS256"
         );
 
         return $jwt;
@@ -31,11 +32,11 @@ class JWT extends Facade
     public static function decode(string $jwt): array
     {
         try {
-            $decoded = JsonWebToken::decode($jwt, self::secret(), ["HS256"]);
-
-            var_dump($decoded);
-            exit;
+            $decoded = JsonWebToken::decode($jwt, new Key(self::secret(), 'HS256'));
         } catch (Exception $e) {
+            $decoded = [];
         }
+
+        return $decoded;
     }
 }

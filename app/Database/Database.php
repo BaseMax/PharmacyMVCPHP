@@ -13,6 +13,7 @@ class Database
     protected static string $InsertQuery = "INSERT INTO {table} ({columns}) VALUES ({values})";
     protected static string $UpdateQuery = "UPDATE {table} SET {sets} WHERE id = {id}";
     protected static string $GetQuery = "SELECT * FROM {table}";
+    protected static string $CehckQuery = "SELECT * FROM {table} WHERE email={email} AND password={password}";
 
     public function __construct()
     {
@@ -69,6 +70,23 @@ class Database
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    public function Check(string $email, string $password, string $table): bool
+    {
+        $sql = $this->setTable(self::$CehckQuery, $table);
+        $sql = $this->setEmail($sql, $email);
+        $sql = $this->setPassword($sql, $password);
+
+        // var_dump($sql);
+        // exit;
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+
+        if (count($stmt->fetchAll(PDO::FETCH_ASSOC)) !== 0) return true;
+        return false;
+    }
+
     protected function setTable(string $sql, string $table): string
     {
         return str_replace("{table}", $table, $sql);
@@ -102,5 +120,15 @@ class Database
         $update_values = rtrim($update_values, ', ');
 
         return str_replace("{sets}", $update_values, $sql);
+    }
+
+    protected function setEmail(string $sql, string $email): string
+    {
+        return str_replace("{email}", "'"  . $email . "'", $sql);
+    }
+
+    protected function setPassword(string $sql, string $password): string
+    {
+        return str_replace("{password}", "'"  . $password . "'", $sql);
     }
 }
