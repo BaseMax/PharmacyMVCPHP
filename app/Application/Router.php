@@ -14,7 +14,7 @@ class Router
         "post" => [],
         "delete" => [],
         "put" => [],
-        "fallback"
+        "fallback" => null
     ];
 
     public function __construct()
@@ -71,6 +71,6 @@ class Router
 
         Response::statusCode(404);
 
-        return call_user_func($this->routes["fallback"]);
+        if ($this->routes["fallback"] !== null) return call_user_func($this->routes["fallback"]);;
     }
 }
