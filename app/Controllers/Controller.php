@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
 use App\Application\Facades\JWT;
 use App\Application\Response\Response;
-use App\Models\User;
 
 class Controller
 {

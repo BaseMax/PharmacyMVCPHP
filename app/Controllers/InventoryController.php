@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\Drug;
 use App\Application\Request\Request;
 use App\Application\Response\Response;
-use App\Models\Drug;
 
 class InventoryController extends Controller
 {

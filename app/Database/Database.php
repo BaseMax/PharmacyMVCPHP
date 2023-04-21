@@ -2,8 +2,8 @@
 
 namespace App\Database;
 
-use App\Config\Config;
 use PDO;
+use App\Config\Config;
 
 class Database
 {

@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
 use App\Application\Facades\JWT;
 use App\Application\Request\Request;
 use App\Application\Response\Response;
-use App\Models\User;
 
 class AuthenticationController extends Controller
 {

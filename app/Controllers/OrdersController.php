@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\Order;
 use App\Application\Request\Request;
 use App\Application\Response\Response;
-use App\Models\Order;
 
 class OrdersController extends Controller
 {

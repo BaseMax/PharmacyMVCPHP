@@ -5,7 +5,6 @@ use App\Controllers\InventoryController;
 use App\Controllers\OrdersController;
 use App\Application\Response\Response;
 
-
 // Inventory Endpoints
 
 $app->get("/api/inventory", [InventoryController::class, "index"]);
@@ -35,6 +34,8 @@ $app->delete("/api/orders/{id}", [OrdersController::class, "destroy"]);
 $app->post("/api/auth/login", [AuthenticationController::class, "login"]);
 
 $app->post("/api/auth/register", [AuthenticationController::class, "register"]);
+
+// 404
 
 $app->fallback(function () {
     return Response::json([
