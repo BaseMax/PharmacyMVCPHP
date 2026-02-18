@@ -15,7 +15,7 @@
     "doctrine/migrations": "^3.6",
     "robmorgan/phinx": "^0.13.4",
     "vlucas/phpdotenv": "^5.5",
-    "firebase/php-jwt": "^6.4",
+    "firebase/php-jwt": "^7.0",
     "guzzlehttp/guzzle": "^7.0"
   },
   "require-dev": {
